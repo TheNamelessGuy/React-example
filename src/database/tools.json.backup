@@ -1,0 +1,25 @@
+{
+    "tools": 
+    [
+        {
+            "id": 1,
+            "Name": "Hammer",
+            "Cost": 5.5
+        },
+        {
+            "id": 2,
+            "Name": "axe",
+            "Cost": 25
+        },
+        {
+            "id": 3,
+            "Name": "wrench",
+            "Cost": 12.5
+        },
+        {
+            "id": 4,
+            "Name": "Knife",
+            "Cost": 1
+        }
+    ]
+}

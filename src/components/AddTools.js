@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import tools_json_file from '../database/tools.json';
-import RFS from 'react-file-system';
 
 import logo from '../logo.svg'
+import { Redirect } from 'react-router';
 //import './AddTools.sass'
 
 class AddTools extends Component {
@@ -13,7 +12,8 @@ class AddTools extends Component {
 
     this.state = {
       name: '',
-      cost: ''
+      cost: '',
+      redirect: false
     }
   }
 
@@ -33,7 +33,7 @@ class AddTools extends Component {
 
   handleSubmit = event => {
 
-    var tools = tools_json_file;
+    var tools = JSON.parse(localStorage.getItem('tools.json'));
     let id_counter = 1;
 
     for (const tool in tools.tools)
@@ -41,17 +41,17 @@ class AddTools extends Component {
     
     tools.tools.push({ "id": id_counter, "Name": this.state.name, "Cost": this.state.cost});
 
-    RFS.writeFile('../database/tools.json', JSON.stringify(tools), (error) => {
-      if (error) throw error
-       console.log(error);
-       alert(error);
-    });
+    localStorage.setItem('tools.json', JSON.stringify(tools));
 
-    console.table(tools.tools);
-    alert({ "id": id_counter, "Name": this.state.name, "Cost": this.state.cost});
+    this.setState({
+      redirect: true
+    })
   }
 
   render() {
+
+    if (this.state.redirect)
+      return <Redirect to='/tools/list' />
 
     return (
 

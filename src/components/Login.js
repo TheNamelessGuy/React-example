@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import users from '../database/users';
-import { Redirect } from 'react-router-dom';
+import { Redirect, BrowserRouter as Router } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 //import './Login.sass'
@@ -34,7 +33,9 @@ class Login extends Component {
 
     handleSubmit = (e) => {
 
-        users.Users.map((users) => {
+        var users = JSON.parse(localStorage.getItem('users.json'));
+
+        users.users.map((users) => {
 
             if (this.state.email == users.Email && this.state.password == users.Password) {
 
@@ -50,7 +51,7 @@ class Login extends Component {
     render() {
 
         if (this.state.redirect)
-            return <Redirect to='/' />
+            return <Redirect to='/' />;
 
         return (
 

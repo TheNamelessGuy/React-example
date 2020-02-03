@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, BrowserRouter as Router } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 import logo from '../logo.svg';
@@ -9,14 +9,10 @@ class Logout extends Component {
 
     render() {
 
-        /*const cookies = new Cookies();
-        cookies.remove('username');*/
+        const cookies = new Cookies();
+        cookies.remove('username');
 
-        return (
-            <div>
-                <Redirect to='/' />
-            </div>
-        );
+        return <Redirect to='/' />
     }
 }
 
